@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>婚約指輪を手作りする | 横浜 renri（レンリ）手作り婚約指輪・エンゲージリング</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================
+       WIREFRAME STYLESHEET — renri 手作り婚約指輪 LP
+       ============================================ */
+
+    :root {
+      --gold: #555555;
+      --gold-light: #777777;
+      --gold-dark: #333333;
+      --text-primary: #222222;
+      --text-secondary: #555555;
+      --text-light: #999999;
+      --bg-white: #ffffff;
+      --bg-cream: #f5f5f5;
+      --bg-warm: #e8e8e8;
+      --bg-dark: #222222;
+      --border-light: #cccccc;
+      --shadow-soft: 0 2px 20px rgba(0, 0, 0, 0.06);
+      --shadow-card: 0 4px 30px rgba(0, 0, 0, 0.08);
+      --serif-jp: 'Noto Serif JP', 'Yu Mincho', '游明朝', serif;
+      --serif-en: 'Cormorant Garamond', serif;
+      --transition: all 0.3s ease;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--serif-jp);
+      color: var(--text-primary);
+      background: var(--bg-white);
+      line-height: 1.8;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+      padding-top: 36px;
+    }
+
+    /* ============================================
+       WIREFRAME ANNOTATION BAR
+       ============================================ */
+    .wireframe-bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+      background: #1a1a2e; color: #fff; padding: 8px 20px;
+      font-family: sans-serif; font-size: 12px; display: flex; align-items: center; gap: 16px;
+    }
+    .wireframe-bar .badge {
+      background: #e94560; color: #fff; padding: 2px 10px; border-radius: 3px; font-weight: 700; font-size: 11px;
+    }
+    .wireframe-bar .page-path { color: #a2d2ff; font-weight: 500; }
+    .section-label {
+      position: absolute; top: 12px; left: 12px; background: rgba(26, 26, 46, 0.85);
+      color: #a2d2ff; font-family: sans-serif; font-size: 11px; padding: 3px 10px; border-radius: 3px; z-index: 10;
+    }
+
+    /* ============================================
+       FEEDBACK BUTTON
+       ============================================ */
+    .feedback-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 50;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      font-size: 12px;
+      color: #fff;
+      background: rgba(0,0,0,0.5);
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s ease;
+      letter-spacing: 0.5px;
+    }
+    .feedback-btn:hover {
+      background: rgba(0,0,0,0.75);
+    }
+    .feedback-btn::before {
+      content: "\270E";
+      font-size: 14px;
+    }
+
+    /* ============================================
+       HEADER
+       ============================================ */
+    .header {
+      position: sticky; top: 36px; z-index: 100; background: rgba(255, 255, 255, 0.96); border-bottom: 1px solid var(--border-light);
+    }
+    .header-inner {
+      max-width: 1200px; margin: 0 auto; padding: 16px 40px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-family: var(--serif-en); font-size: 28px; font-weight: 300; letter-spacing: 4px; color: var(--text-primary); text-decoration: none; }
+    .nav { display: flex; gap: 28px; align-items: center; }
+    .nav a { font-size: 13px; color: var(--text-secondary); text-decoration: none; position: relative; }
+    .nav a.active::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--text-primary); }
+
+    /* ============================================
+       SECTION COMMON
+       ============================================ */
+    section { position: relative; }
+    .section-inner { max-width: 960px; margin: 0 auto; padding: 80px 40px; }
+    .section-header { text-align: center; margin-bottom: 50px; }
+    .section-header .en { font-family: var(--serif-en); font-size: 14px; letter-spacing: 5px; color: var(--text-secondary); margin-bottom: 12px; }
+    .section-header h2 { font-size: 24px; font-weight: 400; letter-spacing: 4px; color: var(--text-primary); }
+    .section-header .line { width: 40px; height: 1px; background: var(--gold); margin: 20px auto 0; }
+    
+    .img-placeholder {
+      background: linear-gradient(135deg, #e0e0e0, #bbbbbb); display: flex; align-items: center; justify-content: center; color: rgba(0,0,0,0.4); font-family: sans-serif; font-size: 13px; text-align: center; padding: 20px;
+    }
+
+    /* ============================================
+       1. HERO & INTRO
+       ============================================ */
+    .hero { height: 80vh; min-height: 500px; display: flex; align-items: center; justify-content: center; position: relative; }
+    .hero .img-placeholder { position: absolute; inset: 0; font-size: 16px; }
+    .hero-copy { position: relative; z-index: 2; text-align: center; color: #fff; background: rgba(0,0,0,0.3); padding: 40px; border-radius: 4px; backdrop-filter: blur(4px); }
+    .hero-copy h1 { font-size: 32px; font-weight: 300; letter-spacing: 8px; line-height: 1.6; margin-bottom: 20px; }
+    .hero-copy p { font-size: 15px; letter-spacing: 2px; }
+
+    /* ============================================
+       2. FEATURES (選ばれる理由)
+       ============================================ */
+    .features { background: var(--bg-cream); }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    .feature-card { background: var(--bg-white); border-radius: 4px; overflow: hidden; box-shadow: var(--shadow-soft); text-align: center; }
+    .feature-card .img-placeholder { height: 200px; }
+    .feature-body { padding: 30px 20px; }
+    .feature-body h3 { font-size: 17px; margin-bottom: 16px; font-weight: 500; }
+    .feature-body p { font-size: 13.5px; color: var(--text-secondary); line-height: 1.8; text-align: left; }
+
+    /* ============================================
+       3. PORTFOLIO (実績)
+       ============================================ */
+    .portfolio { background: var(--bg-white); }
+    .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+    .portfolio-card { margin-bottom: 20px; }
+    .portfolio-card .img-placeholder { height: 260px; margin-bottom: 16px; }
+    .portfolio-info { padding: 0 10px; }
+    .portfolio-price-tag { display: inline-block; background: var(--bg-dark); color: #fff; font-size: 11px; font-family: sans-serif; padding: 2px 8px; margin-bottom: 8px; }
+    .portfolio-info h4 { font-size: 15px; margin-bottom: 8px; font-weight: 500; }
+    .portfolio-info .price { font-family: var(--serif-en); font-size: 18px; letter-spacing: 1px; color: var(--text-primary); }
+
+    /* ============================================
+       4. MATERIALS & OPTIONS (素材・加工)
+       ============================================ */
+    .options { background: var(--bg-warm); }
+    
+    .subsection-title { text-align: center; font-size: 20px; margin-bottom: 40px; font-weight: 500; letter-spacing: 1px; }
+    
+    .materials-section { margin-bottom: 80px; }
+    .materials-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 16px; }
+    .material-card { border: 1px solid var(--border-light); padding: 30px 20px; text-align: center; border-radius: 4px; background: var(--bg-white); }
+    .material-card .circle { width: 80px; height: 80px; border-radius: 50%; background: #ccc; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-family: var(--serif-en); font-size: 20px; }
+    .material-card h4 { font-size: 15px; margin-bottom: 8px; }
+    .material-note { text-align: center; font-size: 13px; color: var(--text-secondary); }
+    
+    .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px 60px; }
+    .option-item { display: flex; gap: 20px; align-items: flex-start; border-bottom: 1px dotted var(--border-light); padding-bottom: 20px; }
+    .option-item:nth-last-child(-n+2) { border-bottom: none; padding-bottom: 0; }
+    .option-item .img-placeholder { width: 100px; height: 100px; flex-shrink: 0; font-size: 11px; padding: 10px; }
+    .option-info h4 { font-size: 14px; margin-bottom: 8px; font-weight: 500; }
+    .option-info .price { font-family: var(--serif-en); font-size: 14px; letter-spacing: 1px; color: var(--text-secondary); }
+
+    /* ============================================
+       5. FLOW (制作の流れ)
+       ============================================ */
+    .flow { background: var(--bg-white); }
+    .flow-steps { max-width: 700px; margin: 0 auto; position: relative; }
+    .flow-steps::before { content: ''; position: absolute; left: 30px; top: 0; bottom: 0; width: 1px; background: var(--border-light); }
+    .flow-step { display: flex; gap: 40px; margin-bottom: 50px; position: relative; }
+    .flow-step:last-child { margin-bottom: 0; }
+    .step-num { width: 60px; height: 60px; background: var(--bg-white); border: 1px solid var(--gold); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2; flex-shrink: 0; }
+    .step-num span:first-child { font-family: var(--serif-en); font-size: 10px; color: var(--text-secondary); }
+    .step-num span:last-child { font-family: var(--serif-en); font-size: 20px; line-height: 1; margin-top: 2px; }
+    .step-content { flex-grow: 1; padding-top: 10px; }
+    .step-content h3 { font-size: 18px; margin-bottom: 12px; }
+    .step-content p { font-size: 14px; color: var(--text-secondary); margin-bottom: 20px; }
+    .step-content .img-placeholder { height: 200px; border-radius: 4px; }
+
+    /* ============================================
+       6. PRICE (価格)
+       ============================================ */
+    .pricing { background: var(--bg-white); }
+    .price-formula { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 40px 0; padding: 20px 0; }
+    .price-part { display: flex; align-items: baseline; gap: 6px; font-size: 16px; color: var(--text-secondary); border-bottom: 1px dotted var(--border-light); padding-bottom: 8px; }
+    .price-part .val { font-family: var(--serif-en); font-size: 24px; font-weight: 500; letter-spacing: 1px; color: var(--text-primary); }
+    .price-plus { color: var(--text-light); }
+
+    /* ============================================
+       7. AFTERCARE (アフターサービス)
+       ============================================ */
+    .aftercare { background: var(--bg-cream); }
+    .aftercare-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .aftercare-item { border: 1px solid var(--border-light); padding: 30px 20px; text-align: center; border-radius: 4px; background: var(--bg-white); }
+    .aftercare-item .img-placeholder { width: 60px; height: 60px; border-radius: 50%; margin: 0 auto 16px; }
+    .aftercare-item .aftercare-icon { width: 60px; height: 60px; border-radius: 50%; margin: 0 auto 16px; background: var(--bg-cream); display: flex; align-items: center; justify-content: center; }
+    .aftercare-item .aftercare-icon svg { width: 28px; height: 28px; stroke: var(--text-secondary); stroke-width: 1.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .aftercare-item h4 { font-size: 14px; margin-bottom: 10px; }
+    .aftercare-item p { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* ============================================
+       8. VOICES (お客様の声)
+       ============================================ */
+    .voices { background: var(--bg-warm); }
+    .voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+    .voice-card { background: var(--bg-white); padding: 30px; border-radius: 4px; position: relative; }
+    .voice-card::before { content: '”'; position: absolute; top: 10px; left: 20px; font-size: 60px; font-family: serif; color: var(--border-light); line-height: 1; }
+    .voice-card .img-placeholder { height: 180px; margin-bottom: 20px; }
+    .voice-card h4 { font-size: 15px; margin-bottom: 12px; position: relative; z-index: 1; }
+    .voice-card p { font-size: 13.5px; color: var(--text-secondary); }
+
+    /* ============================================
+       9. FAQ (よくある質問)
+       ============================================ */
+    .faq { background: var(--bg-white); }
+    .faq-list { max-width: 800px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--border-light); padding: 24px 0; }
+    .faq-q { display: flex; gap: 16px; font-size: 16px; font-weight: 500; cursor: pointer; }
+    .faq-q::before { content: 'Q.'; color: var(--gold-light); font-family: var(--serif-en); font-size: 18px; }
+    .faq-a { display: flex; gap: 16px; font-size: 14px; color: var(--text-secondary); margin-top: 16px; padding-left: 2px; }
+    .faq-a::before { content: 'A.'; color: var(--text-light); font-family: var(--serif-en); font-size: 18px; }
+
+    /* ============================================
+       10. Normal CTA
+       ============================================ */
+    .btn-reserve { background: var(--gold-dark); color: #fff; text-decoration: none; font-weight: 500; transition: var(--transition); display: inline-block; border-radius: 2px; }
+    .btn-reserve:hover { background: #111; }
+
+    /* ============================================
+       ANIMATIONS
+       ============================================ */
+
+    @keyframes heroFadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-copy {
+      animation: heroFadeIn 1s ease-out 0.4s both;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+
+    .fade-in.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-d1 { transition-delay: 0.25s; }
+    .fade-in-d2 { transition-delay: 0.5s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-copy { animation: none; }
+      .fade-in   { opacity: 1; transform: none; transition: none; }
+    }
+
+    @media (max-width: 768px) {
+      .features-grid, .portfolio-grid, .options-grid, .voice-grid { grid-template-columns: 1fr; }
+      .materials-grid, .aftercare-grid { grid-template-columns: 1fr 1fr; }
+      .hero-copy h1 { font-size: 24px; }
+      .flow-step { gap: 20px; }
+      .flow-steps::before { left: 20px; }
+      .step-num { width: 40px; height: 40px; }
+      .step-num span:first-child { display: none; }
+      .step-num span:last-child { font-size: 16px; margin-top: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wireframe-bar">
+    <span class="badge">WIREFRAME</span>
+    <span>renri — 手作り婚約指輪 (LP)</span>
+    <span class="page-path">/engagement_lp/</span>
+  </div>
+
+  <header class="header">
+    <div class="header-inner">
+      <a href="/" class="logo">renri</a>
+      <nav class="nav">
+        <a href="#">renriとは</a>
+        <a href="/handmade/" class="active">手作りコース</a>
+        <a href="/ordermade/">オーダーメイドコース</a>
+        <a href="#">制作事例</a>
+        <a href="#">お客様の声</a>
+        <a href="#">店舗情報</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 1. メイン画像・キャッチコピー -->
+  <section class="hero" id="hero" style="position:relative;">
+    <span class="section-label">① メイン画像・キャッチコピー</span>
+    <a class="feedback-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdng4duvxeCLjISMwoLjmrbeZHqcrqMwZlL4x6c9Ne3mf_7eg/viewform?entry.376704624=手作り婚約指輪&entry.1525828345=①メイン画像・キャッチコピー" target="_blank">修正コメント</a>
+    <div class="img-placeholder" style="background: linear-gradient(135deg, #a0a0a0, #777777); color: #fff;">
+    </div>
+    <div class="hero-copy">
+      <h1>想いを込めて、あなたの手で。<br>世界にひとつの手作り婚約指輪。</h1>
+      <p>大切な人へ贈る、たったひとつの輝き。<br>横浜・馬車道のアトリエで、特別な婚約指輪を手作りしませんか。</p>
+    </div>
+  </section>
+
+  <!-- 2. 選ばれる理由（特徴x3） -->
+  <section class="features" style="position:relative;">
+    <span class="section-label">② 特徴×3（婚約指輪ならではの魅力）</span>
+    <a class="feedback-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdng4duvxeCLjISMwoLjmrbeZHqcrqMwZlL4x6c9Ne3mf_7eg/viewform?entry.376704624=手作り婚約指輪&entry.1525828345=②特徴×3" target="_blank">修正コメント</a>
+    <div class="section-inner">
+      <div class="section-header fade-in">
+        <div class="en">REASONS</div>
+        <h2>renriの手作り婚約指輪が選ばれる理由</h2>
+        <div class="line"></div>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card fade-in">
+          <div class="img-placeholder">📷 高品質なダイヤモンドの写真</div>
+          <div class="feature-body">
+            <h3>確かな目で選ばれる<br>高品質なダイヤモンド</h3>
+            <p>ハイジュエリーも手がけてきたデザイナーがえりすぐった、高品質なダイヤモンドをご用意しております。ご予算に応じたダイヤモンドの仕入れも可能ですので、ご希望にあった一粒の輝きをきっと見つけていただけます。</p>
+          </div>
+        </div>
+        <div class="feature-card fade-in fade-in-d1">
+          <div class="img-placeholder">📷 職人が石留めをしている繊細な作業風景</div>
+          <div class="feature-body">
+            <h3>熟練の職人による<br>石留めと丁寧な仕上げ</h3>
+            <p>お客様に手作りいただいた指輪に、専属の職人が石留め加工と最終仕上げを施します。ダイヤモンドなど高価な天然石のセッティングには熟練の技術を要しますが、renriでは確かな技術を持つ職人が丁寧に仕上げますので、安心してお任せください。</p>
+          </div>
+        </div>
+        <div class="feature-card fade-in fade-in-d2">
+          <div class="img-placeholder">📷 様々なデザインの婚約指輪の集合写真</div>
+          <div class="feature-body">
+            <h3>おふたりの想いに寄り添う<br>多彩なデザイン</h3>
+            <p>ダイヤモンドの印象的な輝きを演出するソリテールタイプから、日常使いにもぴったりなエタニティタイプまで、ご希望に応じて様々なデザインからお好みのスタイルをお選びいただけます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 実績（高品質感・低中高価格） -->
+  <section class="portfolio" style="position:relative;">
+    <span class="section-label">③ 実績（婚約指輪のデザイン別）</span>
+    <a class="feedback-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdng4duvxeCLjISMwoLjmrbeZHqcrqMwZlL4x6c9Ne3mf_7eg/viewform?entry.376704624=手作り婚約指輪&entry.1525828345=③実績" target="_blank">修正コメント</a>
+    <div class="section-inner">
+      <div class="section-header fade-in">
+        <div class="en">PORTFOLIO</div>
+        <h2>手作り婚約指輪の制作事例</h2>
+        <div class="line"></div>
+      </div>
+      <div class="portfolio-grid">
+        
+        <div class="portfolio-card fade-in">
+          <div class="img-placeholder">📷 ソリテールリングの写真</div>
+          <div class="portfolio-info">
+            <span class="portfolio-price-tag">王道・シンプル</span>
+            <h4>すっきりとしたストレートラインの婚約指輪</h4>
+            <div class="price">¥150,000〜</div>
+          </div>
+        </div>
+
+        <div class="portfolio-card fade-in fade-in-d1">
+          <div class="img-placeholder">📷 ピンクゴールドのエタニティリングの写真</div>
+          <div class="portfolio-info">
+            <span class="portfolio-price-tag">華やか・日常使い</span>
+            <h4>ダイヤモンドのラインが華やかなエタニティの婚約指輪</h4>
+            <div class="price">¥180,000〜</div>
+          </div>
+        </div>
+
+        <div class="portfolio-card fade-in fade-in-d2">
+          <div class="img-placeholder">📷 ミル打ち装飾のクラシカルなリングの写真</div>
+          <div class="portfolio-info">
+            <span class="portfolio-price-tag">アンティーク・こだわり</span>
+            <h4>あたたかみのある、クラシカルな手作り婚約指輪</h4>
+            <div class="price">¥220,000〜</div>
+          </div>
+        </div>
+
+      </div>
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="https://renri.jp/case" class="btn-reserve" style="background: var(--bg-white); color: var(--text-primary); border: 1px solid var(--border-light); padding: 12px 40px; font-size: 14px; letter-spacing: 2px;">すべての手作り婚約指輪の事例を見る</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. 価格 -->
+  <section class="pricing" style="position:relative;">
+    <span class="section-label">④ 価格</span>
+    <a class="feedback-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdng4duvxeCLjISMwoLjmrbeZHqcrqMwZlL4x6c9Ne3mf_7eg/viewform?entry.376704624=手作り婚約指輪&entry.1525828345=④価格" target="_blank">修正コメント</a>
+    <div class="section-inner">
+      <div class="section-header fade-in">
+        <div class="en">PRICE</div>
+        <h2>手作り婚約指輪の制作料金</h2>
+      </div>
+      <div class="price-formula fade-in fade-in-d1">
+        <div class="price-part">制作料金 <span class="val">22,000</span> 円</div>
+        <div class="price-plus">+</div>
+        <div class="price-part">材料費</div>
+        <div class="price-plus">+</div>
+        <div class="price-part">ダイヤモンド代・石留加工費</div>
+        <div class="price-plus">+</div>
+        <div class="price-part">オプション加工費</div>
+      </div>
+      <p style="text-align: center; font-size: 13px; color: var(--text-secondary); margin-top: 16px;">※ 使用する金属の種類・量、ダイヤモンドのグレード（大きさ・品質）によって価格は変動いたします。<br>※ ご予算に応じたダイヤモンドのご提案も可能ですので、お気軽にご相談ください。</p>
+    </div>
+  </section>
+
+  <!-- 5. 素材・オプション加工 -->
+  <section class="options" style="position:relative;">
+    <span class="section-label">⑤ 素材・オプション加工</span>
+    <a class="feedback-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdng4duvxeCLjISMwoLjmrbeZHqcrqMwZlL4x6c9Ne3mf_7eg/viewform?entry.376704624=手作り婚約指輪&entry.1525828345=⑤素材・オプション" target="_blank">修正コメント</a>
+    <div class="section-inner">
+      <div class="section-header fade-in">
+        <div class="en">MATERIALS & OPTION</div>
+        <h2>素材とオプション加工</h2>
+        <div class="line"></div>
+      </div>
+
+      <div class="materials-section fade-in">
+        <h3 class="subsection-title">材料費（貴金属地金代）</h3>
+        <div class="materials-grid" style="grid-template-columns: repeat(3, 1fr);">
+          <div class="material-card">
+            <div class="circle" style="background:#e5e4e2; color:#333;">Pt</div>
+            <h4>Pt900<br>プラチナ</h4>
+            <div class="price" style="font-family: var(--serif-en); font-size: 14px; margin-top: 8px; color: var(--text-secondary);">18,700円/g</div>
+          </div>
+          <div class="material-card">
+            <div class="circle" style="background:#d4af37; color:#fff;">YG</div>
+            <h4>K18<br>イエローゴールド</h4>
+            <div class="price" style="font-family: var(--serif-en); font-size: 14px; margin-top: 8px; color: var(--text-secondary);">30,800円/g</div>
+          </div>
+          <div class="material-card">
+            <div class="circle" style="background:#e8e9e1; color:#333;">WG</div>
+            <h4>K18<br>ホワイトゴールド</h4>
+            <div class="price" style="font-family: var(--serif-en); font-size: 14px; margin-top: 8px; color: var(--text-secondary);">31,900円/g</div>
+          </div>
+          <div class="material-card">
+            <div class="circle" style="background:#b76e79; color:#fff;">PG</div>
+            <h4>K18<br>ピンクゴールド</h4>
+            <div class="price" style="font-family: var(--serif-en); font-size: 14px; margin-top: 8px; color: var(--text-secondary);">30,800円/g</div>
+          </div>
+          <div class="material-card">
+            <div class="circle" style="background:#8a9a5b; color:#fff;">GG</div>
+            <h4>K18<br>グリーンゴールド</h4>
+            <div class="price" style="font-family: var(--serif-en); font-size: 14px; margin-top: 8px; color: var(--text-secondary);">30,800円/g</div>
+          </div>
+          <div class="material-card">
+            <div class="circle" style="background:#8e8e8e; color:#fff;">GY</div>
+            <h4>K18<br>グレーゴールド</h4>
+            <div class="price" style="font-family: var(--serif-en); font-size: 14px; margin-top: 8px; color: var(--text-secondary);">35,200円/g</div>
+          </div>
+        </div>
+        <p class="material-note" style="margin-top: 20px;">※ 相場によって価格は変動いたします</p>
+      </div>
+
+      <h3 class="subsection-title">豊富なオプション加工</h3>
+      <div class="options-grid fade-in">
+
+        <div class="option-item">
+          <div class="img-placeholder">📷 ミル打ち</div>
+          <div class="option-info">
+            <h4>ミル打ち加工</h4>
+            <div class="price">8800円〜</div>
+          </div>
+        </div>
+
+        <div class="option-item">
+          <div class="img-placeholder">📷 レーザー刻印</div>
+          <div class="option-info">
+            <h4>レーザー刻印</h4>
+            <div class="price">9900円〜</div>
+          </div>
+        </div>
+
+        <div class="option-item">
+          <div class="img-placeholder">📷 メビウスリング</div>
+          <div class="option-info">
+            <h4>メビウスリング加工</h4>
+            <div class="price">5500円</div>
+          </div>
+        </div>
+
+        <div class="option-item">
+          <div class="img-placeholder">📷 コンビカラー</div>
+          <div class="option-info">
+            <h4>コンビカラー加工</h4>
+            <div class="price">16500円〜</div>
+          </div>
+        </div>
+
+        <div class="option-item">
+          <div class="img-placeholder">📷 手彫り加工</div>
+          <div class="option-info">
+            <h4>手彫り加工</h4>
+            <div class="price">5500円〜</div>
+          </div>
+        </div>
+
+        <div class="option-item">
+          <div class="img-placeholder">📷 ハンマー</div>
+          <div class="option-info">
+            <h4>ハンマーテクスチャー</h4>
+            <div class="price">無料</div>
+          </div>
+        </div>
+
+        <div class="option-item">
+          <div class="img-placeholder">📷 カーブ加工</div>
+          <div class="option-info">
+            <h4>カーブ加工</h4>
+            <div class="price">5500円</div>
+          </div>
+        </div>
+
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 60px;">ダイヤモンド・石留加工</h3>
+      <div class="options-grid">
+
+        <div class="option-item">
+          <div class="img-placeholder">📷 センターダイヤモンド</div>
+          <div class="option-info">
+            <h4>センターダイヤモンド</h4>
+            <div class="price">グレードによりお見積り</div>
+          </div>
+        </div>
+
+        <div class="option-item">
+          <div class="img-placeholder">📷 ワンポイント留め</div>
+          <div class="option-info">
+            <h4>ワンポイント留め（石座）</h4>
+            <div class="price">5500円〜</div>
+          </div>
+        </div>
+
+        <div class="option-item">
+          <div class="img-placeholder">📷 メレダイヤモンド</div>
+          <div class="option-info">
+            <h4>メレダイヤモンド（脇石）</h4>
+            <div class="price">1個3300円〜</div>
+          </div>
+        </div>
+
+        <div class="option-item">
+          <div class="img-placeholder">📷 エタニティタイプ</div>
+          <div class="option-info">
+            <h4>エタニティ留め（10石以上）</h4>
+            <div class="price">1個3300円</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. 制作の流れ -->
+  <section class="flow" style="position:relative;">
+    <span class="section-label">⑥ 制作の流れ</span>
+    <a class="feedback-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdng4duvxeCLjISMwoLjmrbeZHqcrqMwZlL4x6c9Ne3mf_7eg/viewform?entry.376704624=手作り婚約指輪&entry.1525828345=⑥制作の流れ" target="_blank">修正コメント</a>
+    <div class="section-inner">
+      <div class="section-header fade-in">
+        <div class="en">WORK FLOW</div>
+        <h2>手作り婚約指輪 完成までの流れ</h2>
+        <div class="line"></div>
+      </div>
+      <div class="flow-steps">
+
+        <div class="flow-step fade-in">
+          <div class="step-num"><span>STEP</span><span>01</span></div>
+          <div class="step-content">
+            <h3>お打合せ</h3>
+            <p>横浜のアトリエにご来店いただき、ご希望のデザインや納期、ご予算をお打合せさせていただきます。サプライズプロポーズで男性おひとりでのご来店も大歓迎です。完成納期も調整可能ですので、お気軽にご相談くださいませ。</p>
+            <div class="img-placeholder">📷 アトリエでスタッフがお出迎えする写真</div>
+          </div>
+        </div>
+
+        <div class="flow-step fade-in">
+          <div class="step-num"><span>STEP</span><span>02</span></div>
+          <div class="step-content">
+            <h3>デザイン・ダイヤモンド選び</h3>
+            <p>初めてのダイヤモンド選びはわからないことばかり。でも永くジュエリー業界に携わってきたデザイナーが親切にご説明させていただきますのでご安心ください。サンプルを見ながら、ご予算に応じた最適な一粒をお選びいただけます。</p>
+            <div class="img-placeholder">📷 デザイナーと一緒にダイヤモンドを選んでいる写真</div>
+          </div>
+        </div>
+
+        <div class="flow-step fade-in">
+          <div class="step-num"><span>STEP</span><span>03</span></div>
+          <div class="step-content">
+            <h3>手作りによる制作体験</h3>
+            <p>いよいよ、ご自身の手で婚約指輪の制作スタートです。ハンマーで金属をカンカンと叩く音が静かなアトリエに鳴り響きます。職人がマンツーマンでサポートいたしますので、不器用という方もご安心ください。お相手を想いながら、大切な輝きをお作りいただけます。</p>
+            <div class="img-placeholder">📷 男性がいっしょうけんめい金属をハンマーで叩いている写真など</div>
+          </div>
+        </div>
+
+        <div class="flow-step fade-in">
+          <div class="step-num"><span>STEP</span><span>04</span></div>
+          <div class="step-content">
+            <h3>職人による仕上げ・石留め</h3>
+            <p>手作りでお作りいただいた指輪に、石留め加工と最終仕上げを行います。ダイヤモンドなど高価な天然石は、セッティングに熟練の技術を要します。renriでは高い技術をもったスタッフが仕上げ加工を担当いたしますので、安心してお任せください。</p>
+            <div class="img-placeholder">📷 職人が顕微鏡などを使いながら繊細な石留めをしている様子</div>
+          </div>
+        </div>
+
+        <div class="flow-step fade-in">
+          <div class="step-num"><span>STEP</span><span>05</span></div>
+          <div class="step-content">
+            <h3>婚約指輪の完成・お渡し</h3>
+            <p>完成した手作り婚約指輪は、renriオリジナルケースに入れてお渡しいたします。ダイヤモンドの鑑定書や、制作中に撮影したお写真も一緒にお渡しいたしますので、ぜひ記念の品としてお手元に。</p>
+            <div class="img-placeholder">📷 完成した婚約指輪をケースに入れてお渡しする写真</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. アフターサービス -->
+  <section class="aftercare" style="position:relative;">
+    <span class="section-label">⑦ アフターケア</span>
+    <a class="feedback-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdng4duvxeCLjISMwoLjmrbeZHqcrqMwZlL4x6c9Ne3mf_7eg/viewform?entry.376704624=手作り婚約指輪&entry.1525828345=⑦アフターケア" target="_blank">修正コメント</a>
+    <div class="section-inner">
+      <div class="section-header fade-in">
+        <div class="en">AFTERCARE</div>
+        <h2>世界にひとつの大切な指輪だから<br>安心のアフターサポート</h2>
+        <div class="line"></div>
+      </div>
+      <div class="aftercare-grid">
+        <div class="aftercare-item fade-in">
+          <div class="aftercare-icon"><svg viewBox="0 0 32 32"><circle cx="16" cy="15" r="5"/><path d="M14 7 L16 5 L18 7 L16 9 Z"/><path d="M5 24 L27 24"/><path d="M7 22 L5 24 L7 26"/><path d="M25 22 L27 24 L25 26"/><path d="M10 24 L10 27"/><path d="M16 24 L16 27"/><path d="M22 24 L22 27"/></svg></div>
+          <h4>サイズ直し<br>（基本無料）</h4>
+          <p>前後1号のサイズ直しは基本無料です。サプライズでお渡しした後にサイズが合わなかった場合でも、調整が可能ですのでご安心ください。</p>
+        </div>
+        <div class="aftercare-item fade-in fade-in-d1">
+          <div class="aftercare-icon"><svg viewBox="0 0 32 32"><circle cx="16" cy="19" r="5"/><path d="M14 14 L16 12 L18 14 L16 16 Z"/><path d="M8 4 L9.5 7.5 L13 9 L9.5 10.5 L8 14 L6.5 10.5 L3 9 L6.5 7.5 Z"/><path d="M24 4 L25.5 7.5 L29 9 L25.5 10.5 L24 14 L22.5 10.5 L19 9 L22.5 7.5 Z"/></svg></div>
+          <h4>クリーニング<br>（基本永久無償）</h4>
+          <p>大切なダイヤモンドの輝きを永く保つため、クリーニングは基本的に永久無償で承っております。</p>
+        </div>
+        <div class="aftercare-item fade-in fade-in-d1">
+          <div class="aftercare-icon"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="6"/><path d="M16 2 L16 7"/><path d="M13 5 L16 2 L19 5"/><path d="M16 30 L16 25"/><path d="M13 27 L16 30 L19 27"/><path d="M2 16 L7 16"/><path d="M5 13 L2 16 L5 19"/><path d="M30 16 L25 16"/><path d="M27 13 L30 16 L27 19"/></svg></div>
+          <h4>歪み直し・磨き直し</h4>
+          <p>永くお使いいただく中で生じた歪みや小傷も、元の美しい状態にお直しいたします。</p>
+        </div>
+        <div class="aftercare-item fade-in fade-in-d2">
+          <div class="aftercare-icon"><svg viewBox="0 0 32 32"><circle cx="12" cy="14" r="6"/><path d="M10 8 L12 6 L14 8 L12 10 Z"/><circle cx="20" cy="20" r="6"/></svg></div>
+          <h4>結婚指輪との<br>重ね付けのご相談</h4>
+          <p>将来、renriで結婚指輪を手作りされる際に、婚約指輪とぴったり重ね付けできるデザインのご提案も可能です。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. お客様の声 -->
+  <section class="voices" style="position:relative;">
+    <span class="section-label">⑧ お客様の声</span>
+    <a class="feedback-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdng4duvxeCLjISMwoLjmrbeZHqcrqMwZlL4x6c9Ne3mf_7eg/viewform?entry.376704624=手作り婚約指輪&entry.1525828345=⑧お客様の声" target="_blank">修正コメント</a>
+    <div class="section-inner">
+      <div class="section-header fade-in">
+        <div class="en">VOICES</div>
+        <h2>お客様の声</h2>
+        <div class="line"></div>
+      </div>
+      <div class="voice-grid">
+        <div class="voice-card fade-in">
+          <div class="img-placeholder">📷 プロポーズ成功の報告に来た男性の写真</div>
+          <h4>ここには貴社指定のお客様の声が固定ではいります。</h4>
+          <p>サプライズで彼女に贈りたくて、ひとりで手作りに挑戦しました。初めての経験で不安でしたが、デザインもダイヤモンド選びもスタッフさんが親身に相談に乗ってくださり、制作中もずっと丁寧にサポートしていただきました。おかげさまで、無事にプロポーズ大成功です！（横浜市・20代男性）</p>
+        </div>
+        <div class="voice-card fade-in fade-in-d2">
+          <div class="img-placeholder">📷 ダイヤを選びながら笑顔のカップル写真</div>
+          <h4>ここには貴社指定のお客様の声が固定ではいります。</h4>
+          <p>サプライズではなく、ふたりで一緒に婚約指輪を手作りすることにしました。たくさんのダイヤモンドの中から、一番心に響く輝きをふたりで選べたのがとても嬉しかったです。既製品を買うよりもずっと特別で、かけがえのない宝物になりました。（東京都・30代ご夫婦）</p>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="https://renri.jp/voice" class="btn-reserve" style="background: var(--bg-white); color: var(--text-primary); border: 1px solid var(--border-light); padding: 12px 40px; font-size: 14px; letter-spacing: 2px; border-radius: 2px;">すべてのお客様の声を見る</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. よくある質問 -->
+  <section class="faq" style="position:relative;">
+    <span class="section-label">⑨ よくある質問（プロポーズ特有の疑問）</span>
+    <a class="feedback-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdng4duvxeCLjISMwoLjmrbeZHqcrqMwZlL4x6c9Ne3mf_7eg/viewform?entry.376704624=手作り婚約指輪&entry.1525828345=⑨よくある質問" target="_blank">修正コメント</a>
+    <div class="section-inner">
+      <div class="section-header fade-in">
+        <div class="en">Q & A</div>
+        <h2>よくある質問</h2>
+        <div class="line"></div>
+      </div>
+      <div class="faq-list fade-in">
+        <div class="faq-item">
+          <div class="faq-q">サプライズで贈りたいのですが、彼女の指のサイズがわかりません。</div>
+          <div class="faq-a">ご安心ください。おおよそのサイズでお作りし、プロポーズ後にぴったりのサイズへお直しさせていただきます。サイズ直しは基本無料で対応しております。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">手作りした婚約指輪を当日持ち帰ることはできますか？</div>
+          <div class="faq-a">婚約指輪にはダイヤモンドの石留めや繊細な仕上げ作業が必要となるため、当日のお持ち帰りはできません。完成まで約1ヶ月〜1.5ヶ月ほどお時間をいただいております。プロポーズの日程から逆算して、余裕を持ってご予約くださいませ。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">彼女の好みのデザインがわかりません。</div>
+          <div class="faq-a">男性おひとりでのご来店の場合、お相手の普段のお写真や雰囲気をお伺いしながら、似合うデザインをデザイナーが一緒にご提案させていただきます。サンプルや資料もご用意しておりますのでご安心ください。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">不器用でも婚約指輪を手作りできますか？</div>
+          <div class="faq-a">もちろん大丈夫です。常に職人がおそばでサポートいたします。みなさま手作りされる前は不安な方がほとんどですが、制作し終わった後は「楽しかった！」「充実した！」とお喜びいただけています。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">男性ひとりでの来店でも大丈夫ですか？</div>
+          <div class="faq-a">サプライズプロポーズのため、男性おひとりでご来店されるお客様はたくさんいらっしゃいます。個室を彩るたくさんの植物とアンティークの家具に囲まれた落ち着いたアトリエですので、リラックスして制作に集中していただけます。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Normal CTA -->
+  <section class="cta-section" style="padding: 80px 40px; text-align: center; background: var(--bg-cream);">
+    <p class="fade-in" style="font-size: 14px; color: var(--text-secondary); margin-bottom: 24px; line-height: 2;">大切な人を想いながら、あなたの手で婚約指輪を手作りする。<br>その時間そのものが、おふたりにとってかけがえのない宝物になります。</p>
+    <h2 class="fade-in" style="font-size: 20px; letter-spacing: 4px; margin-bottom: 28px;">想いの詰まった、世界にひとつの手作り婚約指輪を。</h2>
+    <a href="/reservation" class="btn-reserve fade-in fade-in-d1" style="padding: 20px 80px; font-size: 18px;">来店予約・ご相談はこちら</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" style="padding: 60px 40px; text-align: center; background: #f5f5f5; border-top: 1px solid #cccccc; color: #666;">
+    <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 30px;">
+      <a href="#" style="width: 40px; height: 40px; border: 1px solid #999; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; color: #999; font-size: 16px;">f</a>
+      <a href="#" style="width: 40px; height: 40px; border: 1px solid #999; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; color: #999; font-size: 16px;">ig</a>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; margin-bottom: 16px; font-size: 13px;">
+      <a href="#" style="color: #666; text-decoration: none;">renriとは</a>
+      <a href="#" style="color: #666; text-decoration: none;">手作りコース</a>
+      <a href="#" style="color: #666; text-decoration: none;">オーダーメイドコース</a>
+      <a href="#" style="color: #666; text-decoration: none;">Uchi de no RING</a>
+      <a href="#" style="color: #666; text-decoration: none;">価格について</a>
+      <a href="#" style="color: #666; text-decoration: none;">制作事例</a>
+      <a href="#" style="color: #666; text-decoration: none;">お客様の声</a>
+      <a href="#" style="color: #666; text-decoration: none;">店舗情報</a>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; margin-bottom: 40px; font-size: 13px;">
+      <a href="#" style="color: #666; text-decoration: none;">アフターケア</a>
+      <a href="#" style="color: #666; text-decoration: none;">よくあるご質問</a>
+      <a href="#" style="color: #666; text-decoration: none;">スタッフブログ</a>
+      <a href="#" style="color: #666; text-decoration: none;">用語集</a>
+      <a href="#" style="color: #666; text-decoration: none;">プライバシーポリシー</a>
+      <a href="#" style="color: #666; text-decoration: none;">お問い合わせ</a>
+      <a href="#" style="color: #666; text-decoration: none;">会社概要</a>
+    </div>
+    <div style="margin-bottom: 16px; font-size: 24px; letter-spacing: 6px; font-family: 'Cormorant Garamond', serif; font-weight: 300;">renri</div>
+    <p style="font-size: 12px; letter-spacing: 1px; color: #999;">&copy; 2026 renri.</p>
+  </footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
