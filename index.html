@@ -4,150 +4,379 @@
   <meta charset="UTF-8">
   <meta name="robots" content="noindex, nofollow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>renri ワイヤーフレーム index</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>renri Design Preview</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #f7f7f5;
+      --surface: #ffffff;
+      --ink: #222222;
+      --muted: #6d6b66;
+      --line: #dedbd4;
+      --accent: #7c6a4f;
+      --accent-dark: #403829;
+      --shadow: 0 18px 48px rgba(34, 34, 34, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Noto Serif JP', 'Yu Mincho', serif;
-      background: #fafafa;
-      color: #222;
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
       line-height: 1.8;
-      padding: 60px 20px;
     }
-    .container { max-width: 880px; margin: 0 auto; }
-    h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 36px;
-      font-weight: 300;
-      letter-spacing: 6px;
-      margin-bottom: 8px;
+
+    a {
+      color: inherit;
     }
-    .lead {
-      font-size: 13px;
-      color: #777;
-      letter-spacing: 1px;
-      margin-bottom: 48px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid #ddd;
+
+    .site-header {
+      border-bottom: 1px solid var(--line);
+      background: rgba(247, 247, 245, 0.96);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
     }
-    .group { margin-bottom: 48px; }
-    .group h2 {
-      font-size: 15px;
-      font-weight: 500;
-      letter-spacing: 2px;
-      margin-bottom: 16px;
-      color: #444;
+
+    .header-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
     }
-    .group h2 .en {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 12px;
-      letter-spacing: 3px;
-      color: #999;
-      margin-left: 12px;
-    }
-    .links {
+
+    .brand {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 12px;
-    }
-    .links a {
-      display: block;
-      padding: 18px 20px;
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+      gap: 2px;
+      color: inherit;
       text-decoration: none;
-      color: #222;
-      font-size: 14px;
-      letter-spacing: 1px;
-      transition: all 0.25s ease;
     }
-    .links a:hover {
-      border-color: #888;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+
+    .brand-title {
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: 5px;
+      line-height: 1;
     }
-    .links a .filename {
-      display: block;
-      font-family: monospace;
+
+    .brand-label {
+      color: var(--muted);
+      font-family: Arial, sans-serif;
       font-size: 11px;
-      color: #999;
+      letter-spacing: 2px;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .nav-link {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      border-radius: 4px;
+      color: var(--accent-dark);
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 8px 13px;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
       letter-spacing: 0;
+      text-decoration: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus-visible {
+      border-color: var(--accent);
+      box-shadow: 0 8px 22px rgba(64, 56, 41, 0.1);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 56px 24px 88px;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      align-items: end;
+      gap: 40px;
+      padding-bottom: 42px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 38px;
+      font-weight: 400;
+      line-height: 1.45;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .meta-panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .meta-row {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    .meta-row:last-child {
+      border-bottom: 0;
+    }
+
+    .meta-key {
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 0;
+    }
+
+    .preview-list {
+      display: grid;
+      gap: 56px;
+      margin-top: 54px;
+    }
+
+    .preview {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .preview-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfbfa;
+    }
+
+    .preview-title {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: 0;
+    }
+
+    .preview-info {
+      color: var(--muted);
+      display: block;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      line-height: 1.5;
       margin-top: 4px;
     }
-    .badge-admin {
-      display: inline-block;
-      background: #222;
-      color: #fff;
-      font-size: 10px;
-      letter-spacing: 1px;
-      padding: 2px 8px;
-      border-radius: 2px;
-      margin-left: 8px;
-      vertical-align: middle;
+
+    .preview-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .button {
+      border: 1px solid var(--accent);
+      background: var(--accent-dark);
+      border-radius: 4px;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 8px 13px;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 0;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .button.secondary {
+      background: var(--surface);
+      color: var(--accent-dark);
+    }
+
+    .image-frame {
+      background:
+        linear-gradient(45deg, #eeeeec 25%, transparent 25%),
+        linear-gradient(-45deg, #eeeeec 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #eeeeec 75%),
+        linear-gradient(-45deg, transparent 75%, #eeeeec 75%);
+      background-color: #f8f8f7;
+      background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+      background-size: 16px 16px;
+      padding: 24px;
+    }
+
+    .image-frame img {
+      background: #ffffff;
+      border: 1px solid rgba(34, 34, 34, 0.08);
+      display: block;
+      height: auto;
+      margin: 0 auto;
+      max-width: 100%;
+      width: 960px;
+    }
+
+    .site-footer {
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 0;
+      margin-top: 54px;
+      text-align: center;
+    }
+
+    @media (max-width: 760px) {
+      .header-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .header-actions {
+        justify-content: flex-start;
+      }
+
+      main {
+        padding: 38px 16px 64px;
+      }
+
+      .intro {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .preview-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .preview-actions {
+        justify-content: flex-start;
+      }
+
+      .image-frame {
+        padding: 12px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>renri</h1>
-    <p class="lead">WIREFRAME INDEX</p>
-
-    <div class="group">
-      <h2>お客様の声 <span class="en">CUSTOMER'S VOICE</span></h2>
-      <div class="links">
-        <a href="wireframe_work/voice_list_wireframe.html">
-          一覧ページ
-          <span class="filename">voice_list_wireframe.html</span>
-        </a>
-        <a href="wireframe_work/voice_detail_wireframe.html">
-          個別ページ
-          <span class="filename">voice_detail_wireframe.html</span>
-        </a>
-        <a href="wireframe_work/voice_admin_wireframe.html">
-          管理画面<span class="badge-admin">ADMIN</span>
-          <span class="filename">voice_admin_wireframe.html</span>
-        </a>
-      </div>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="renri design preview top">
+        <span class="brand-title">renri</span>
+        <span class="brand-label">Design Preview</span>
+      </a>
+      <nav class="header-actions" aria-label="ページ内リンク">
+        <a class="nav-link" href="#order-top">オーダーコースTOP</a>
+        <a class="nav-link" href="#order-marriage">オーダーメイド結婚指輪</a>
+        <a class="nav-link" href="wireframes.html">Wireframes</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="group">
-      <h2>手作りコース <span class="en">HANDMADE</span></h2>
-      <div class="links">
-        <a href="wireframe_work/handmade_wireframe_v3.html">
-          手作りコース TOP
-          <span class="filename">handmade_wireframe_v3.html</span>
-        </a>
-        <a href="wireframe_work/handmade_marriage_wireframe_v2.html">
-          手作り 結婚指輪
-          <span class="filename">handmade_marriage_wireframe_v2.html</span>
-        </a>
-        <a href="wireframe_work/handmade_engagement_wireframe_v2.html">
-          手作り 婚約指輪
-          <span class="filename">handmade_engagement_wireframe_v2.html</span>
-        </a>
+  <main id="top">
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <h1 id="page-title">renri オーダーメイドコース デザイン確認</h1>
+        <p class="lead">designフォルダのPNGカンプをブラウザで確認できるプレビューです。各デザインは原寸画像としても開けます。</p>
       </div>
-    </div>
+      <aside class="meta-panel" aria-label="ファイル情報">
+        <div class="meta-row">
+          <span class="meta-key">Source</span>
+          <span>design フォルダ</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-key">Images</span>
+          <span>2 files</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-key">Width</span>
+          <span>1440px</span>
+        </div>
+      </aside>
+    </section>
 
-    <div class="group">
-      <h2>オーダーメイドコース <span class="en">ORDERMADE</span></h2>
-      <div class="links">
-        <a href="wireframe_work/ordermade_wireframe_v3.html">
-          オーダーメイドコース TOP
-          <span class="filename">ordermade_wireframe_v3.html</span>
-        </a>
-        <a href="wireframe_work/ordermade_marriage_wireframe_v2.html">
-          オーダーメイド 結婚指輪
-          <span class="filename">ordermade_marriage_wireframe_v2.html</span>
-        </a>
-        <a href="wireframe_work/ordermade_engagement_wireframe_v2.html">
-          オーダーメイド 婚約指輪
-          <span class="filename">ordermade_engagement_wireframe_v2.html</span>
-        </a>
-      </div>
-    </div>
-  </div>
+    <section class="preview-list" aria-label="デザイン一覧">
+      <article class="preview" id="order-top">
+        <div class="preview-head">
+          <div>
+            <h2 class="preview-title">オーダーコースTOP</h2>
+            <span class="preview-info">1440 x 7509px / design/オーダーコースTOP.png</span>
+          </div>
+          <div class="preview-actions">
+            <a class="button" href="design/オーダーコースTOP.png" target="_blank" rel="noopener">原寸で開く</a>
+            <a class="button secondary" href="#top">上へ戻る</a>
+          </div>
+        </div>
+        <div class="image-frame">
+          <img src="design/オーダーコースTOP.png" alt="オーダーコースTOPのデザインカンプ" width="1440" height="7509">
+        </div>
+      </article>
+
+      <article class="preview" id="order-marriage">
+        <div class="preview-head">
+          <div>
+            <h2 class="preview-title">オーダーメイド結婚指輪</h2>
+            <span class="preview-info">1440 x 12582px / design/オーダーメイド結婚指輪.png</span>
+          </div>
+          <div class="preview-actions">
+            <a class="button" href="design/オーダーメイド結婚指輪.png" target="_blank" rel="noopener">原寸で開く</a>
+            <a class="button secondary" href="#top">上へ戻る</a>
+          </div>
+        </div>
+        <div class="image-frame">
+          <img src="design/オーダーメイド結婚指輪.png" alt="オーダーメイド結婚指輪のデザインカンプ" width="1440" height="12582">
+        </div>
+      </article>
+    </section>
+
+    <p class="site-footer">renri design preview</p>
+  </main>
 </body>
 </html>
