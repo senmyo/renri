@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SP固定メニューサンプル | renri ワイヤーフレーム</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #555555;
+      --text-primary: #222222;
+      --text-secondary: #555555;
+      --text-light: #999999;
+      --bg-white: #ffffff;
+      --bg-cream: #f5f5f5;
+      --bg-warm: #e8e8e8;
+      --bg-dark: #222222;
+      --border-light: #cccccc;
+      --shadow-soft: 0 2px 20px rgba(0, 0, 0, 0.06);
+      --serif-jp: 'Noto Serif JP', 'Yu Mincho', '游明朝', serif;
+      --serif-en: 'Cormorant Garamond', serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      padding-top: 36px;
+      padding-bottom: 82px;
+      background: var(--bg-cream);
+      color: var(--text-primary);
+      font-family: var(--serif-jp);
+      font-size: 15px;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wireframe-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: #1a1a2e;
+      color: #fff;
+      padding: 8px 20px;
+      font-family: sans-serif;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .wireframe-bar .badge {
+      background: #e94560;
+      color: #fff;
+      padding: 2px 10px;
+      border-radius: 3px;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+    }
+
+    .wireframe-bar .page-path {
+      color: #a2d2ff;
+      font-weight: 500;
+    }
+
+    .prototype {
+      width: min(100%, 430px);
+      margin: 0 auto;
+      background: var(--bg-white);
+      min-height: calc(100vh - 36px);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 36px;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: 52px 1fr 52px;
+      align-items: center;
+      min-height: 58px;
+      background: rgba(255,255,255,0.96);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .hamburger,
+    .menu-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      font-family: sans-serif;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 12px;
+      border-top: 1px solid var(--text-secondary);
+      border-bottom: 1px solid var(--text-secondary);
+      display: block;
+    }
+
+    .logo {
+      text-align: center;
+      font-family: var(--serif-en);
+      font-size: 24px;
+      font-weight: 300;
+      letter-spacing: 6px;
+      line-height: 1;
+    }
+
+    .hero {
+      position: relative;
+      height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background:
+        linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.18)),
+        linear-gradient(135deg, #cfcfcf, #8f8f8f);
+      color: #fff;
+    }
+
+    .section-label {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(26, 26, 46, 0.85);
+      color: #a2d2ff;
+      font-family: sans-serif;
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 3px;
+      z-index: 10;
+      letter-spacing: 0.3px;
+    }
+
+    .hero-copy .en {
+      font-family: var(--serif-en);
+      font-size: 12px;
+      letter-spacing: 5px;
+      margin-bottom: 12px;
+      opacity: 0.9;
+    }
+
+    .hero-copy h1 {
+      font-size: 25px;
+      font-weight: 300;
+      letter-spacing: 5px;
+      line-height: 1.7;
+    }
+
+    .section {
+      position: relative;
+      padding: 62px 24px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .section:nth-of-type(odd) {
+      background: var(--bg-cream);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .section-header .en {
+      font-family: var(--serif-en);
+      color: var(--text-light);
+      font-size: 12px;
+      letter-spacing: 4px;
+      margin-bottom: 8px;
+    }
+
+    .section-header h2 {
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      line-height: 1.7;
+    }
+
+    .lead {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 2.1;
+      text-align: center;
+    }
+
+    .course-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .course-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border-light);
+      padding: 22px 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .course-card .en {
+      color: var(--text-light);
+      font-family: var(--serif-en);
+      font-size: 11px;
+      letter-spacing: 3px;
+    }
+
+    .course-card h3 {
+      font-size: 17px;
+      font-weight: 500;
+      letter-spacing: 2px;
+    }
+
+    .course-card p {
+      color: var(--text-secondary);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .placeholder {
+      min-height: 170px;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, #dedede, #b9b9b9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(0,0,0,0.34);
+      font-family: sans-serif;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .cta-box {
+      background: var(--bg-dark);
+      color: #fff;
+      padding: 34px 22px;
+      text-align: center;
+    }
+
+    .cta-box p {
+      color: rgba(255,255,255,0.7);
+      font-size: 13px;
+      line-height: 2;
+      margin-bottom: 18px;
+    }
+
+    .cta-box h2 {
+      font-size: 19px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+
+    .cta-box .dummy-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 34px;
+      border: 1px solid rgba(255,255,255,0.42);
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+
+    .bottom-menu {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      z-index: 200;
+      width: min(100%, 430px);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--border-light);
+      background: rgba(255,255,255,0.96);
+      box-shadow: 0 -8px 24px rgba(0,0,0,0.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .bottom-menu a {
+      min-height: 62px;
+      padding: 8px 3px 7px;
+      border-right: 1px solid var(--border-light);
+      display: grid;
+      place-items: center;
+      gap: 3px;
+      color: var(--text-secondary);
+      font-size: 11px;
+      letter-spacing: 0.8px;
+      line-height: 1.25;
+      text-align: center;
+    }
+
+    .bottom-menu a:last-child {
+      border-right: 0;
+      background: var(--bg-dark);
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    .bottom-menu .icon {
+      width: 22px;
+      height: 22px;
+      display: block;
+    }
+
+    .bottom-menu svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      stroke-width: 1.2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .sample-note {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      width: 260px;
+      padding: 18px;
+      background: var(--bg-white);
+      border: 1px solid var(--border-light);
+      color: var(--text-secondary);
+      font-size: 12px;
+      line-height: 1.8;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .sample-note .title {
+      display: block;
+      color: var(--text-primary);
+      font-size: 13px;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    @media (max-width: 900px) {
+      .sample-note {
+        display: none;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .prototype {
+        width: 100%;
+        box-shadow: none;
+      }
+
+      .wireframe-bar {
+        padding: 8px 12px;
+        gap: 10px;
+      }
+
+      .wireframe-bar .page-path {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wireframe-bar">
+    <span class="badge">WIREFRAME</span>
+    <span>renri — SP固定メニューサンプル</span>
+    <span class="page-path">共通パーツ / bottom fixed menu</span>
+  </div>
+
+  <div class="prototype">
+    <header class="site-header">
+      <a class="hamburger" href="#" aria-label="メニュー"><span></span></a>
+      <a class="logo" href="#">renri</a>
+      <a class="menu-dots" href="#" aria-label="予約">○</a>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="en">ORDER MADE COURSE</div>
+        <h1>ふたりらしい<br>指輪づくりを探す</h1>
+      </div>
+    </section>
+
+    <section class="section" id="handmade">
+      <div class="section-header">
+        <div class="en">HANDMADE</div>
+        <h2>手作りコース</h2>
+      </div>
+      <p class="lead">
+        ふたりで手を動かしながら、指輪づくりの時間そのものを思い出にするコース。
+      </p>
+    </section>
+
+    <section class="section" id="order">
+      <div class="section-header">
+        <div class="en">ORDER MADE</div>
+        <h2>オーダーメイドコース</h2>
+      </div>
+      <div class="course-list">
+        <article class="course-card">
+          <span class="en">ORDER MARRIAGE RING</span>
+          <h3>オーダーメイド結婚指輪</h3>
+          <p>デザイナーと相談しながら、おふたりだけのペアリングを形にします。</p>
+        </article>
+        <article class="course-card">
+          <span class="en">ORDER ENGAGEMENT RING</span>
+          <h3>オーダーメイド婚約指輪</h3>
+          <p>想いやモチーフを込めた、特別なプロポーズの一本をご提案します。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="works">
+      <div class="section-header">
+        <div class="en">WORKS</div>
+        <h2>制作事例</h2>
+      </div>
+      <div class="placeholder">📷 制作事例の写真エリア</div>
+      <p class="lead">
+        手作り・オーダーメイドの完成事例を見ながら、好みの雰囲気を探せます。
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div class="en">PRICE</div>
+        <h2>価格について</h2>
+      </div>
+      <p class="lead">
+        コースごとの価格目安、素材やオプションによる違いを確認できます。
+      </p>
+    </section>
+
+    <section class="cta-box" id="reserve">
+      <p>迷っている段階でもご相談いただけます。</p>
+      <h2>まずはお気軽に<br>ご来店ください</h2>
+      <span class="dummy-button">来店予約へ</span>
+    </section>
+  </div>
+
+  <nav class="bottom-menu" aria-label="SP固定メニュー">
+    <a href="#handmade">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="13" r="4"/><circle cx="15" cy="13" r="4"/></svg>
+      </span>
+      <span>手作り</span>
+    </a>
+    <a href="#order">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 20 L4 10 L8 4 L16 4 L20 10 Z"/><path d="M4 10 H20"/><path d="M8 4 L12 10 L16 4"/></svg>
+      </span>
+      <span>オーダー</span>
+    </a>
+    <a href="#works">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="1"/><path d="M7 15 L10 12 L12 14 L15 10 L18 14"/></svg>
+      </span>
+      <span>事例</span>
+    </a>
+    <a href="#reserve">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="1"/><path d="M8 3 V7"/><path d="M16 3 V7"/><path d="M5 10 H19"/><path d="M9 14 H15"/></svg>
+      </span>
+      <span>来店予約</span>
+    </a>
+  </nav>
+
+  <aside class="sample-note">
+    <span class="title">確認ポイント</span>
+    画面下に固定される4項目メニューのサンプルです。右端の「来店予約」だけ濃色にして、主要CVとして見せています。
+  </aside>
+</body>
+</html>
