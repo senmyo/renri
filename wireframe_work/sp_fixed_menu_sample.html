@@ -302,15 +302,15 @@
     }
 
     .bottom-menu a {
-      min-height: 62px;
-      padding: 8px 3px 7px;
+      min-height: 56px;
+      padding: 8px 3px;
       border-right: 1px solid var(--border-light);
-      display: grid;
-      place-items: center;
-      gap: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: var(--text-secondary);
-      font-size: 11px;
-      letter-spacing: 0.8px;
+      font-size: 12px;
+      letter-spacing: 1.3px;
       line-height: 1.25;
       text-align: center;
     }
@@ -320,22 +320,6 @@
       background: var(--bg-dark);
       color: #fff;
       letter-spacing: 1px;
-    }
-
-    .bottom-menu .icon {
-      width: 22px;
-      height: 22px;
-      display: block;
-    }
-
-    .bottom-menu svg {
-      width: 22px;
-      height: 22px;
-      stroke: currentColor;
-      stroke-width: 1.2;
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
     }
 
     .sample-note {
@@ -462,35 +446,15 @@
   </div>
 
   <nav class="bottom-menu" aria-label="SP固定メニュー">
-    <a href="#handmade">
-      <span class="icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><circle cx="9" cy="13" r="4"/><circle cx="15" cy="13" r="4"/></svg>
-      </span>
-      <span>手作り</span>
-    </a>
-    <a href="#order">
-      <span class="icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M12 20 L4 10 L8 4 L16 4 L20 10 Z"/><path d="M4 10 H20"/><path d="M8 4 L12 10 L16 4"/></svg>
-      </span>
-      <span>オーダー</span>
-    </a>
-    <a href="#works">
-      <span class="icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="1"/><path d="M7 15 L10 12 L12 14 L15 10 L18 14"/></svg>
-      </span>
-      <span>事例</span>
-    </a>
-    <a href="#reserve">
-      <span class="icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="1"/><path d="M8 3 V7"/><path d="M16 3 V7"/><path d="M5 10 H19"/><path d="M9 14 H15"/></svg>
-      </span>
-      <span>来店予約</span>
-    </a>
+    <a href="#handmade">手作り</a>
+    <a href="#order">オーダー</a>
+    <a href="#works">事例</a>
+    <a href="#reserve">来店予約</a>
   </nav>
 
   <aside class="sample-note">
     <span class="title">確認ポイント</span>
-    画面下に固定される4項目メニューのサンプルです。右端の「来店予約」だけ濃色にして、主要CVとして見せています。
+    画面下に固定される4項目メニューのサンプルです。アイコンは入れず、右端の「来店予約」だけ濃色にして主要CVとして見せています。
   </aside>
 </body>
 </html>
