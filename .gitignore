@@ -4,3 +4,13 @@ desktop.ini
 .claude/
 node_modules/
 *.log
+.env
+.env.*
+!.env.example
+
+# Local/client materials kept outside Git
+report/
+撮影/
+
+# Separate repository
+renri-wireframe/
