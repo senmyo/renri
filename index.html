@@ -38,11 +38,11 @@
     }
 
     .site-header {
-      border-bottom: 1px solid var(--line);
-      background: rgba(247, 247, 245, 0.96);
       position: sticky;
       top: 0;
       z-index: 10;
+      border-bottom: 1px solid var(--line);
+      background: rgba(247, 247, 245, 0.96);
       backdrop-filter: blur(10px);
     }
 
@@ -70,11 +70,19 @@
       line-height: 1;
     }
 
+    .brand-label,
+    .meta-key,
+    .preview-info,
+    .button,
+    .nav-link,
+    .site-footer {
+      font-family: Arial, sans-serif;
+      letter-spacing: 0;
+    }
+
     .brand-label {
       color: var(--muted);
-      font-family: Arial, sans-serif;
       font-size: 11px;
-      letter-spacing: 2px;
       line-height: 1.3;
       text-transform: uppercase;
     }
@@ -86,19 +94,22 @@
       gap: 8px;
     }
 
+    .nav-link,
+    .button {
+      min-height: 38px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 13px;
+      font-size: 12px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
     .nav-link {
       border: 1px solid var(--line);
       background: var(--surface);
-      border-radius: 4px;
       color: var(--accent-dark);
-      display: inline-flex;
-      align-items: center;
-      min-height: 38px;
-      padding: 8px 13px;
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      letter-spacing: 0;
-      text-decoration: none;
       transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     }
 
@@ -139,12 +150,16 @@
       font-size: 15px;
     }
 
-    .meta-panel {
+    .meta-panel,
+    .preview {
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: 8px;
-      padding: 22px;
       box-shadow: var(--shadow);
+    }
+
+    .meta-panel {
+      padding: 22px;
     }
 
     .meta-row {
@@ -162,9 +177,14 @@
 
     .meta-key {
       color: var(--muted);
-      font-family: Arial, sans-serif;
       font-size: 12px;
-      letter-spacing: 0;
+    }
+
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 28px;
     }
 
     .preview-list {
@@ -174,11 +194,7 @@
     }
 
     .preview {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 8px;
       overflow: hidden;
-      box-shadow: var(--shadow);
     }
 
     .preview-head {
@@ -202,7 +218,6 @@
     .preview-info {
       color: var(--muted);
       display: block;
-      font-family: Arial, sans-serif;
       font-size: 12px;
       line-height: 1.5;
       margin-top: 4px;
@@ -218,17 +233,7 @@
     .button {
       border: 1px solid var(--accent);
       background: var(--accent-dark);
-      border-radius: 4px;
       color: #ffffff;
-      display: inline-flex;
-      align-items: center;
-      min-height: 38px;
-      padding: 8px 13px;
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      letter-spacing: 0;
-      text-decoration: none;
-      white-space: nowrap;
     }
 
     .button.secondary {
@@ -264,9 +269,7 @@
 
     .site-footer {
       color: var(--muted);
-      font-family: Arial, sans-serif;
       font-size: 12px;
-      letter-spacing: 0;
       margin-top: 54px;
       text-align: center;
     }
@@ -277,7 +280,8 @@
         flex-direction: column;
       }
 
-      .header-actions {
+      .header-actions,
+      .preview-actions {
         justify-content: flex-start;
       }
 
@@ -299,10 +303,6 @@
         flex-direction: column;
       }
 
-      .preview-actions {
-        justify-content: flex-start;
-      }
-
       .image-frame {
         padding: 12px;
       }
@@ -316,11 +316,9 @@
         <span class="brand-title">renri</span>
         <span class="brand-label">Design Preview</span>
       </a>
-      <nav class="header-actions" aria-label="ページ内リンク">
-        <a class="nav-link" href="#order-top">オーダーコースTOP</a>
-        <a class="nav-link" href="#order-top-sp">TOP SP</a>
-        <a class="nav-link" href="#order-marriage">オーダーメイド結婚指輪</a>
-        <a class="nav-link" href="#order-marriage-sp">結婚指輪 SP</a>
+      <nav class="header-actions" aria-label="ページリンク">
+        <a class="nav-link" href="#top">Top</a>
+        <a class="nav-link" href="#previews">Designs</a>
         <a class="nav-link" href="wireframes.html">Wireframes</a>
       </nav>
     </div>
@@ -329,8 +327,9 @@
   <main id="top">
     <section class="intro" aria-labelledby="page-title">
       <div>
-        <h1 id="page-title">renri オーダーメイドコース デザイン確認</h1>
+        <h1 id="page-title">renri デザイン確認</h1>
         <p class="lead">designフォルダのPNGカンプをブラウザで確認できるプレビューです。PC版とSP版をそれぞれ原寸画像としても開けます。</p>
+        <nav class="quick-links" id="quick-links" aria-label="デザイン一覧リンク"></nav>
       </div>
       <aside class="meta-panel" aria-label="ファイル情報">
         <div class="meta-row">
@@ -339,7 +338,7 @@
         </div>
         <div class="meta-row">
           <span class="meta-key">Images</span>
-          <span>4 files</span>
+          <span id="image-count">15 files</span>
         </div>
         <div class="meta-row">
           <span class="meta-key">Width</span>
@@ -348,73 +347,65 @@
       </aside>
     </section>
 
-    <section class="preview-list" aria-label="デザイン一覧">
-      <article class="preview" id="order-top">
-        <div class="preview-head">
-          <div>
-            <h2 class="preview-title">オーダーコースTOP</h2>
-            <span class="preview-info">1440 x 7509px / design/オーダーコースTOP.png</span>
-          </div>
-          <div class="preview-actions">
-            <a class="button" href="design/オーダーコースTOP.png" target="_blank" rel="noopener">原寸で開く</a>
-            <a class="button secondary" href="#top">上へ戻る</a>
-          </div>
-        </div>
-        <div class="image-frame">
-          <img src="design/オーダーコースTOP.png" alt="オーダーコースTOPのデザインカンプ" width="1440" height="7509">
-        </div>
-      </article>
-
-      <article class="preview is-sp" id="order-top-sp">
-        <div class="preview-head">
-          <div>
-            <h2 class="preview-title">オーダーコースTOP（SP）</h2>
-            <span class="preview-info">750 x 14881px / design/オーダーコースTOP_sp.png</span>
-          </div>
-          <div class="preview-actions">
-            <a class="button" href="design/オーダーコースTOP_sp.png" target="_blank" rel="noopener">原寸で開く</a>
-            <a class="button secondary" href="#top">上へ戻る</a>
-          </div>
-        </div>
-        <div class="image-frame">
-          <img src="design/オーダーコースTOP_sp.png" alt="オーダーコースTOP SP版のデザインカンプ" width="750" height="14881">
-        </div>
-      </article>
-
-      <article class="preview" id="order-marriage">
-        <div class="preview-head">
-          <div>
-            <h2 class="preview-title">オーダーメイド結婚指輪</h2>
-            <span class="preview-info">1440 x 11867px / design/オーダーメイド結婚指輪.png</span>
-          </div>
-          <div class="preview-actions">
-            <a class="button" href="design/オーダーメイド結婚指輪.png" target="_blank" rel="noopener">原寸で開く</a>
-            <a class="button secondary" href="#top">上へ戻る</a>
-          </div>
-        </div>
-        <div class="image-frame">
-          <img src="design/オーダーメイド結婚指輪.png" alt="オーダーメイド結婚指輪のデザインカンプ" width="1440" height="11867">
-        </div>
-      </article>
-
-      <article class="preview is-sp" id="order-marriage-sp">
-        <div class="preview-head">
-          <div>
-            <h2 class="preview-title">オーダーメイド結婚指輪（SP）</h2>
-            <span class="preview-info">750 x 21461px / design/オーダーメイド結婚指輪_sp.png</span>
-          </div>
-          <div class="preview-actions">
-            <a class="button" href="design/オーダーメイド結婚指輪_sp.png" target="_blank" rel="noopener">原寸で開く</a>
-            <a class="button secondary" href="#top">上へ戻る</a>
-          </div>
-        </div>
-        <div class="image-frame">
-          <img src="design/オーダーメイド結婚指輪_sp.png" alt="オーダーメイド結婚指輪 SP版のデザインカンプ" width="750" height="21461">
-        </div>
-      </article>
-    </section>
+    <section class="preview-list" id="previews" aria-label="デザイン一覧"></section>
 
     <p class="site-footer">renri design preview</p>
   </main>
+
+  <script>
+    const designs = [
+      { title: "navi_sp", file: "navi_sp.png", width: 750, height: 1930, type: "sp" },
+      { title: "オーダーコースTOP", file: "オーダーコースTOP.png", width: 1440, height: 7509 },
+      { title: "オーダーコースTOP（PC）", file: "オーダーコースTOP_pc.png", width: 1440, height: 7509 },
+      { title: "オーダーコースTOP（SP）", file: "オーダーコースTOP_sp.png", width: 750, height: 14881, type: "sp" },
+      { title: "オーダーメイド婚約指輪（PC）", file: "オーダーメイド婚約指輪_pc.png", width: 1440, height: 12954 },
+      { title: "オーダーメイド婚約指輪（SP）", file: "オーダーメイド婚約指輪_sp.png", width: 750, height: 23526, type: "sp" },
+      { title: "オーダーメイド結婚指輪", file: "オーダーメイド結婚指輪.png", width: 1440, height: 11867 },
+      { title: "オーダーメイド結婚指輪（PC）", file: "オーダーメイド結婚指輪_pc.png", width: 1440, height: 11836 },
+      { title: "オーダーメイド結婚指輪（SP）", file: "オーダーメイド結婚指輪_sp.png", width: 750, height: 21461, type: "sp" },
+      { title: "手作りコースTOP（PC）", file: "手作りコースTOP_pc.png", width: 1440, height: 6408 },
+      { title: "手作りコースTOP（SP）", file: "手作りコースTOP_sp.png", width: 750, height: 13004, type: "sp" },
+      { title: "手作り婚約指輪（PC）", file: "手作り婚約指輪_pc.png", width: 1440, height: 11474 },
+      { title: "手作り婚約指輪（SP）", file: "手作り婚約指輪_sp.png", width: 750, height: 20392, type: "sp" },
+      { title: "手作り結婚指輪（PC）", file: "手作り結婚指輪_pc.png", width: 1440, height: 11490 },
+      { title: "手作り結婚指輪（SP）", file: "手作り結婚指輪_sp.png", width: 750, height: 20560, type: "sp" }
+    ];
+
+    const previews = document.querySelector("#previews");
+    const quickLinks = document.querySelector("#quick-links");
+    const imageCount = document.querySelector("#image-count");
+
+    imageCount.textContent = `${designs.length} files`;
+
+    designs.forEach((design, index) => {
+      const id = `design-${index + 1}`;
+      const path = `design/${design.file}`;
+      const article = document.createElement("article");
+      article.className = `preview${design.type === "sp" ? " is-sp" : ""}`;
+      article.id = id;
+      article.innerHTML = `
+        <div class="preview-head">
+          <div>
+            <h2 class="preview-title">${design.title}</h2>
+            <span class="preview-info">${design.width} x ${design.height}px / ${path}</span>
+          </div>
+          <div class="preview-actions">
+            <a class="button" href="${path}" target="_blank" rel="noopener">原寸で開く</a>
+            <a class="button secondary" href="#top">上へ戻る</a>
+          </div>
+        </div>
+        <div class="image-frame">
+          <img src="${path}" alt="${design.title}のデザインカンプ" width="${design.width}" height="${design.height}" loading="lazy">
+        </div>
+      `;
+      previews.append(article);
+
+      const link = document.createElement("a");
+      link.className = "nav-link";
+      link.href = `#${id}`;
+      link.textContent = design.title;
+      quickLinks.append(link);
+    });
+  </script>
 </body>
 </html>
