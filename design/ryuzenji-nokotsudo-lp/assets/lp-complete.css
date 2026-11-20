@@ -60,7 +60,7 @@
     align-self: start;
     z-index: 2;
     margin: 0;
-    padding: clamp(24px, 4svh, 36px) 28px;
+    padding: clamp(24px, 4svh, 36px) 16px;
     color: var(--ink);
     font-size: clamp(30px, 8.6vw, 36px);
     line-height: 1.7;
