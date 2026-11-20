@@ -19,7 +19,7 @@
 @media(max-width:375px){.hero-copy{padding:24px 18px 0}.hero h1{font-size:32px}.hero-label{font-size:11px}.hero-points li{padding:0 10px}.hero-actions .button{font-size:13px}.section-heading{font-size:24px}.plan-card{padding:25px 20px}.reason-copy{padding:24px}.header-actions .button{padding:8px 10px}.site-logo__main{font-size:20px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
 
-/* Mobile first view: full-height photograph with only the catchphrase. */
+/* Mobile first view: bright full-height photo and readable white headline bands. */
 .hero-location { display: none; }
 @media (max-width: 720px) {
   .hero {
@@ -41,28 +41,33 @@
     z-index: 0;
   }
   .hero::before {
-    display: block;
-    position: relative;
-    inset: auto;
-    grid-area: 1 / 1;
-    z-index: 1;
-    pointer-events: none;
-    background: linear-gradient(180deg, rgba(24, 19, 14, .48), rgba(24, 19, 14, .20) 36%, transparent 68%);
+    display: none;
   }
   .hero-inner, .hero-copy { display: contents; }
   .hero-copy > .hero-label { display: none; }
   .hero h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
     position: relative;
     grid-area: 1 / 1;
     align-self: start;
     z-index: 2;
     margin: 0;
     padding: clamp(32px, 6svh, 52px) 28px;
-    color: #fff;
+    color: var(--ink);
     font-size: clamp(30px, 8.6vw, 36px);
     line-height: 1.7;
     letter-spacing: .06em;
-    text-shadow: 0 2px 14px rgba(24, 19, 14, .28);
+    text-shadow: none;
+  }
+  .hero h1 br { display: none; }
+  .hero-title-line {
+    display: inline-block;
+    padding: 2px 10px 6px;
+    background: #fff;
+    line-height: 1.55;
   }
   .hero-details {
     grid-area: 2 / 1;
