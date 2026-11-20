@@ -19,15 +19,20 @@
 @media(max-width:375px){.hero-copy{padding:24px 18px 0}.hero h1{font-size:32px}.hero-label{font-size:11px}.hero-points li{padding:0 10px}.hero-actions .button{font-size:13px}.section-heading{font-size:24px}.plan-card{padding:25px 20px}.reason-copy{padding:24px}.header-actions .button{padding:8px 10px}.site-logo__main{font-size:20px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
 
-/* Mobile first view: bright full-height photo and readable white headline bands. */
+/* Mobile first view: photo and introduction share the space above the fixed CTA. */
+.hero-first-view { display: contents; }
 .hero-location { display: none; }
 @media (max-width: 720px) {
   .hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: minmax(360px, calc(100svh - 140px - env(safe-area-inset-bottom))) auto;
+    display: block;
     background: #fff;
     overflow: hidden;
+  }
+  .hero-first-view {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) auto;
+    height: calc(100svh - 140px - env(safe-area-inset-bottom));
   }
   .hero-photo {
     position: relative;
@@ -44,7 +49,7 @@
     display: none;
   }
   .hero-inner, .hero-copy { display: contents; }
-  .hero-copy > .hero-label { display: none; }
+  .hero-label { display: none; }
   .hero h1 {
     display: flex;
     flex-direction: column;
@@ -55,7 +60,7 @@
     align-self: start;
     z-index: 2;
     margin: 0;
-    padding: clamp(32px, 6svh, 52px) 28px;
+    padding: clamp(24px, 4svh, 36px) 28px;
     color: var(--ink);
     font-size: clamp(30px, 8.6vw, 36px);
     line-height: 1.7;
@@ -69,19 +74,29 @@
     background: #fff;
     line-height: 1.55;
   }
-  .hero-details {
+  .hero-intro {
     grid-area: 2 / 1;
-    padding: 32px 24px 38px;
+    padding: 20px 24px;
+    background: #fff;
+  }
+  .hero-details {
+    padding: 26px 24px 38px;
     background: #fff;
   }
   .hero-location {
     display: block;
-    margin: 0 0 14px;
+    margin: 0 0 10px;
     font-size: 13px;
+    line-height: 1.7;
     font-weight: 500;
     color: var(--enji);
   }
-  .hero-details .hero-catch { margin: 0 0 18px; font-size: 18px; }
+  .hero-intro .hero-catch { margin: 0 0 12px; font-size: 18px; line-height: 1.65; }
+  .hero-intro .hero-catch span { display: inline-block; }
+  .hero-intro .hero-lead { line-height: 1.8; }
   .hero-details .hero-actions { display: none; }
   .hero-details .hero-note { margin-top: 22px; }
+}
+@media (max-width: 375px) {
+  .hero-intro { padding: 16px 20px; }
 }
